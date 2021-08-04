@@ -5,10 +5,10 @@ public class TicTacToe {
     private String changeInput = "O";
     Scanner sc = new Scanner(System.in);
 
-    public void printBoard(String[][] board) {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++)
-                System.out.print(board[i][j] + " ");
+    public void printBoard() {
+        for (int i = 0; i < this.gameBoard.length; i++) {
+            for (int j = 0; j < this.gameBoard[i].length; j++)
+                System.out.print(this.gameBoard[i][j] + " ");
             System.out.println();
         }
     }
@@ -33,7 +33,7 @@ public class TicTacToe {
     public void play() {
         String input = sc.next();
         this.changeBoard(input);
-        this.printBoard(this.gameBoard);
+        this.printBoard();
         System.out.println("Please play your next step");
     }
 
@@ -44,9 +44,11 @@ public class TicTacToe {
     public static void main(String[] args) {
         TicTacToe tictactoe = new TicTacToe();
         System.out.println("Do you want to play Tic Tac Toe? If yes then play your first step");
-        tictactoe.printBoard(tictactoe.gameBoard);
+        tictactoe.printBoard();
         while (true) {
             tictactoe.play();
+            // if(gameOver) break;
         }
+        // tictactoe.cleanup();
     }
 }
