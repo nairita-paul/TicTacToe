@@ -60,7 +60,7 @@ public class TicTacToe {
     }
 
     public boolean isGameOver() {
-        return this.isRowEqual() || this.isColumnEqual() || this.isDiagonalEqual() || this.isTie();
+        return this.isRowEqual() || this.isColumnEqual() || this.isDiagonalEqual();
     }
 
     public boolean isInputInBoard(String input) {
@@ -84,8 +84,13 @@ public class TicTacToe {
     }
 
     public boolean isTie() {
-        String[] numbers = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-
+        for (int row = 0; row < this.gameBoard.length; row++) {
+            for (int col = 0; col < this.gameBoard[row].length; col++) {
+                if (!this.gameBoard[row][col].equals("X") && !this.gameBoard[row][col].equals("O"))
+                    return false;
+            }
+        }
+        return true;
     }
 
     public void play() {
@@ -109,7 +114,11 @@ public class TicTacToe {
                 tictactoe.toggleChangeInput();
                 System.out.println("Congrats! " + tictactoe.changeInput + " has won the game");
                 break;
+            } else if (tictactoe.isTie()) {
+                System.out.println("Opss ! It's a TIE !!");
+                break;
             }
+
         }
 
         tictactoe.cleanup();
