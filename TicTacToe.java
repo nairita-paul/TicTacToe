@@ -24,6 +24,7 @@ public class TicTacToe {
                 if (input.equals(this.gameBoard[i][j])) {
                     this.gameBoard[i][j] = this.changeInput;
                     this.toggleChangeInput();
+
                 }
         }
     }
@@ -59,7 +60,7 @@ public class TicTacToe {
                         && this.gameBoard[1][1].equals(this.gameBoard[2][0]));
     }
 
-    public boolean isGameOver() {
+    public boolean isGameWon() {
         return this.isRowEqual() || this.isColumnEqual() || this.isDiagonalEqual();
     }
 
@@ -78,6 +79,7 @@ public class TicTacToe {
         for (int i = 1; i < 10; i++) {
             if (String.valueOf(i).equals(input) && this.isInputInBoard(input)) {
                 isIncorrect = false;
+                break;
             }
         }
         return isIncorrect;
@@ -110,7 +112,7 @@ public class TicTacToe {
         tictactoe.printBoard();
         while (true) {
             tictactoe.play();
-            if (tictactoe.isGameOver()) {
+            if (tictactoe.isGameWon()) {
                 tictactoe.toggleChangeInput();
                 System.out.println("Congrats! " + tictactoe.changeInput + " has won the game");
                 break;
